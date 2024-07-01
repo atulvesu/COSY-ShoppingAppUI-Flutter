@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:may_17/screen/cartScreen.dart';
 import 'package:may_17/widgets/btn.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -91,9 +92,18 @@ class ProductDetailScreen extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Btn(name: "Add to cart"),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(),
+                  ));
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Btn(name: "Add to cart"),
+            ),
           ),
           const SizedBox(
             height: 10,

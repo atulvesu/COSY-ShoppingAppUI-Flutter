@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:may_17/screen/bottomOne_screen.dart';
 import 'package:may_17/screen/bottomThree_screen.dart';
 import 'package:may_17/screen/bottomTwo_screen.dart';
+import 'package:may_17/screen/cartScreen.dart';
+import 'package:may_17/screen/likeScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int myIndex = 0;
   List<Widget> widgetList = [
     const BottomOneScreen(),
-    const BottomTwoScreen(),
+    const LikeScreen(),
     const BottomThreeScreen(),
   ];
   @override
@@ -31,7 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartScreen(),
+                    ));
+              },
               child: Stack(
                 alignment: Alignment.center,
                 children: [

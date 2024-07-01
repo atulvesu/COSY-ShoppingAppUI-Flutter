@@ -1,21 +1,16 @@
-// ignore_for_file: unnecessary_import, file_names
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:may_17/screen/likeScreen.dart';
 import 'package:may_17/screen/productDetail_screen.dart';
 
-class BottomOneScreen extends StatefulWidget {
-  const BottomOneScreen({super.key});
+class LikeScreen extends StatefulWidget {
+  const LikeScreen({super.key});
 
   @override
-  State<BottomOneScreen> createState() => _BottomOneScreenState();
+  State<LikeScreen> createState() => _LikeScreenState();
 }
 
-class _BottomOneScreenState extends State<BottomOneScreen> {
-  int _selectedIndex = 2;
-
+class _LikeScreenState extends State<LikeScreen> {
   final List<Map<String, String>> products = [
     {
       'image':
@@ -102,86 +97,58 @@ class _BottomOneScreenState extends State<BottomOneScreen> {
       'dummy': 'Some text 12'
     },
   ];
-
   @override
   Widget build(BuildContext context) {
-    var arrNames = ['Tables', 'Lamps', 'Sofas', 'Xyz', "Abcde"];
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            )),
+      ),
       body: Column(
         children: [
-          SizedBox(
-            height: 50,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: arrNames.length,
-              itemBuilder: (context, index) {
-                bool isSelected = index == _selectedIndex;
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color:
-                          isSelected ? Colors.white : const Color(0xff00007F),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Row(
-                        children: [
-                          const ClipRRect(
-                            child: CircleAvatar(
-                              radius: 20,
-                              backgroundImage: NetworkImage(
-                                'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            arrNames[index],
-                            style: TextStyle(
-                                color:
-                                    isSelected ? Colors.black : Colors.white),
-                          ),
-                        ],
-                      ),
+          Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipOval(
+                    child: Image.network(
+                      'https://plus.unsplash.com/premium_photo-1707932485795-1d0aed727376?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHx8',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "12 items",
-                  style: TextStyle(color: Colors.white),
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "Popular List",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: Colors.white,
-                        ))
-                  ],
-                )
+                Text(
+                  "Small lamps",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Text(
+                    "Invite new members",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
               ],
             ),
           ),
@@ -233,11 +200,11 @@ class _BottomOneScreenState extends State<BottomOneScreen> {
                                   right: 10,
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) {
-                                          return LikeScreen();
-                                        },
-                                      ));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => LikeScreen(),
+                                          ));
                                     },
                                     child: CircleAvatar(
                                       backgroundColor: Colors.black,
